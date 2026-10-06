@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página não encontrada | KO Consultoria e Gestão</title>
+<meta name="description" content="A página que você procura não existe ou mudou de endereço.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23e9e9e9' stroke-width='5' stroke-dasharray='5 3.2'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23e9e9e9'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/page.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/" aria-label="KO Consultoria e Gestão, ir para o início">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="#e9e9e9" stroke-width="6" stroke-dasharray="6 4.2"/><circle cx="32" cy="32" r="9" fill="#e9e9e9"/></svg>
+    <b>KO</b>
+  </a>
+  <a class="back" href="/">← Voltar ao site</a>
+</header>
+
+<main class="nf">
+  <div class="nf-inner">
+    <svg class="gear" id="gear" viewBox="0 0 300 300" role="img" aria-label="Engrenagens da marca KO"></svg>
+    <div class="code" aria-hidden="true">4<i>0</i>4</div>
+    <h1>Esta engrenagem não encaixou.</h1>
+    <p>A página que você procura não existe ou mudou de endereço. Volte ao início ou fale diretamente com a gente.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Ir para o início</a>
+      <a class="btn btn-ghost" href="/#contato">Entrar em contato</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© <span id="year">2025</span> Kelly Oliveira · Todos os direitos reservados</span>
+  <a href="/politica-de-privacidade.html">Política de Privacidade</a>
+</footer>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg", svg = document.getElementById("gear");
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const path = (cx, cy, t, ro, ri, hole) => {
+    const st = Math.PI * 2 / t; let d = "";
+    for (let i = 0; i < t; i++) [[0, ri], [.14, ro], [.46, ro], [.6, ri]].forEach(([k, r], j) => {
+      const a = i * st + k * st; d += (i + j ? "L" : "M") + (cx + Math.cos(a) * r).toFixed(1) + " " + (cy + Math.sin(a) * r).toFixed(1);
+    });
+    return d + `ZM${cx + hole} ${cy}A${hole} ${hole} 0 1 0 ${cx - hole} ${cy}A${hole} ${hole} 0 1 0 ${cx + hole} ${cy}Z`;
+  };
+  const defs = el("defs", {}, svg), g = el("linearGradient", { id: "a", x1: 0, y1: 0, x2: 1, y2: 1 }, defs);
+  el("stop", { offset: 0, "stop-color": "#555" }, g); el("stop", { offset: 1, "stop-color": "#1a1a1a" }, g);
+  const defs_ = [[150, 150, 14, 70, 58, 26, 1, 1], [236, 96, 10, 40, 33, 10, -1, 1.4], [70, 226, 9, 34, 28, 9, -1, 1.6]];
+  const parts = defs_.map(([x, y, t, ro, ri, h, dir, sp]) => {
+    const gr = el("g", { class: "g" }, svg);
+    el("path", { d: path(x, y, t, ro, ri, h), fill: "url(#a)", "fill-rule": "evenodd", stroke: "#4a4a4a", "stroke-width": ".6" }, gr);
+    return [gr, dir * sp];
+  });
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const tick = t => { if (!reduce) parts.forEach(([n, s]) => n.style.transform = `rotate(${(t * .012 * s).toFixed(1)}deg)`); requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
